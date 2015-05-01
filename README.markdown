@@ -20,19 +20,33 @@ Or you can build your image directly from my Github repository:
 
 You can run the container with no ENV options to run an instance of Leaflet that points to the primary [OpenStreetMap](https://www.openstreetmap.org/) servers.
 
-    $ sudo docker run -d -p 8080:80 openfirmware/nginx-leaflet
+    $ sudo docker run -it -p 8080:80 openfirmware/nginx-leaflet
 
 Checking your Docker host port 8080 should display a Leaflet map, with OSM tiles. If you want to customize the tiles and run MapQuest OSM:
 
-    $ sudo docker run -d -p 8080:80 -e "TILESERVER=http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg" openfirmware/nginx-leaflet
+    $ sudo docker run -it -p 8080:80 -e "TILESERVER=http://otile1.mqcdn.com/tiles/1.0.0/map/{z}/{x}/{y}.jpg" openfirmware/nginx-leaflet
 
 The Tile Server URL template is documented in the [Leaflet API](http://leafletjs.com/reference.html#url-template). This should launch a docker container that displays a Leaflet map using tiles from MapQuest.
 
 ## Other Examples
 
+Here are some sample tile servers you can test. More can be found on the OpenStreetMap wiki for [Tile Servers](http://wiki.openstreetmap.org/wiki/Tile_servers).
+
 ### MapQuest Open Aerial
 
-    $ sudo docker run -d -p 8080:80 -e "TILESERVER=http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg" openfirmware/nginx-leaflet
+    $ sudo docker run -it -p 8080:80 -e "TILESERVER=http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg" openfirmware/nginx-leaflet
+
+### HOT Style
+
+    $ sudo docker run -it -p 8080:80 -e "TILESERVER=http://a.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png" openfirmware/nginx-leaflet
+
+### OpenCycleMap
+
+    $ sudo docker run -it -p 8080:80 -e "TILESERVER=http://a.tile.opencyclemap.org/cycle/{z}/{x}/{y}.png" openfirmware/nginx-leaflet
+
+### [Stamen Toner](http://maps.stamen.com/#toner)
+
+    $ sudo docker run -it -p 8080:80 -e "TILESERVER=http://a.tile.stamen.com/toner/{z}/{x}/{y}.png" openfirmware/nginx-leaflet
 
 ## Todo
 
